@@ -78,7 +78,6 @@ printf '\033[32m%s\033[m\n' "その６：ノードを起動"
 
 docker ps -q --filter "name=ursula" | grep -q . && docker kill ursula && docker rm ursula
 printf '\033[32m%s\033[m\n' "IPが正しいか聞かれるのでyを入力しenter"
-printf '\033[32m%s\033[m\n' "パスワードをまた聞かれるので適当な８文字以上のパスワードを設定する（２回聞かれる）"
 printf '\033[32m%s\033[m\n' "その後シードフレーズが表示されるのでメモる。メモったらyで進み、シードフレーズをコピペしてエンターを入力する"
 docker run -it --rm \
     -p 9151:9151 \
