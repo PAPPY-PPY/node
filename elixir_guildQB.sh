@@ -21,5 +21,5 @@ sudo apt install docker-ce -y
 
 printf '\033[32m%s\033[m\n' "その２：dockerの設定ファイルをダウンロードし、dockerを起動"
 wget https://files.elixir.finance/Dockerfile
-docker build . -f Dockerfile -t elixir-validator.
+docker build . -f Dockerfile -t elixir-validator
 docker run -it --name ev elixir-validator
