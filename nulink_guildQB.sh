@@ -28,6 +28,8 @@ if [ "$(ls /root/geth-linux-amd64-1.10.23-d901d853/keystore/ | wc -l)" ] >1; the
     mkdir /root/geth-linux-amd64-1.10.23-d901d853/keystore/
 fi
 ./geth account new --keystore ./keystore
+UTC="$(ls /root/geth-linux-amd64-1.10.23-d901d853/keystore/)"
+export UTC
 PKEY="0x""$(awk -F \" '{print $4}' /root/geth-linux-amd64-1.10.23-d901d853/keystore/$UTC)"
 export PKEY
 echo $PKEY
@@ -57,8 +59,6 @@ chmod -R 777 /root/nulink
 #step5
 printf '\033[32m%s\033[m\n' "その５：ノードの初期設定を行う"
 
-UTC="$(ls /root/geth-linux-amd64-1.10.23-d901d853/keystore/)"
-export UTC
 KEY="/root/geth-linux-amd64-1.10.23-d901d853/keystore/$UTC"
 export KEY
 
