@@ -28,8 +28,10 @@ if [ "$(ls /root/geth-linux-amd64-1.10.23-d901d853/keystore/ | wc -l)" ] >1; the
     mkdir /root/geth-linux-amd64-1.10.23-d901d853/keystore/
 fi
 ./geth account new --keystore ./keystore
-
-printf '\033[31m%s\033[m\n' "ここで生成されたアドレス（Public address of the key）へBNBtestnetのガスを送る。0,01とかで良い。送ったらenterを叩き次へ進む"
+PKEY="0x""$(awk -F \" '{print $4}' /root/geth-linux-amd64-1.10.23-d901d853/keystore/$UTC)"
+export PKEY
+echo $PKEY
+printf '\033[31m%s\033[m\n' "↑このアドレスへBNBtestnetのガスを送る。0,01とかで良い。送ったらenterを叩き次へ進む"
 read _
 
 #step3
@@ -57,8 +59,6 @@ printf '\033[32m%s\033[m\n' "その５：ノードの初期設定を行う"
 
 UTC="$(ls /root/geth-linux-amd64-1.10.23-d901d853/keystore/)"
 export UTC
-PKEY="0x""$(awk -F \" '{print $4}' /root/geth-linux-amd64-1.10.23-d901d853/keystore/$UTC)"
-export PKEY
 KEY="/root/geth-linux-amd64-1.10.23-d901d853/keystore/$UTC"
 export KEY
 
@@ -106,4 +106,6 @@ docker run --restart on-failure -d \
     nulink/nulink nulink ursula run --no-block-until-ready
 
 printf '\033[35m%s\033[m\n' '起動完了。モニター開始 '
+echo $PKEY
+echo "↑dashbordでoperatorに入力するアドレスはこれ"
 docker logs -f ursula
