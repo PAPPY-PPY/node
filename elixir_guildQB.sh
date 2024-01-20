@@ -21,6 +21,7 @@ sudo apt install docker-ce -y
 
 printf '\033[32m%s\033[m\n' "その２：dockerの設定ファイルを作成"
 touch Dockerfile
+echo "FROM elixirprotocol/validator:testnet-2" >>Dockerfile
 read -p "アドレスを入力: " ADDRESS
 echo "ENV ADDRESS="$ADDRESS >>Dockerfile
 read -p "秘密鍵を入力: " PKEY
