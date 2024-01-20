@@ -32,7 +32,7 @@ UTC="$(ls /root/geth-linux-amd64-1.10.23-d901d853/keystore/)"
 export UTC
 PKEY="0x""$(awk -F \" '{print $4}' /root/geth-linux-amd64-1.10.23-d901d853/keystore/$UTC)"
 export PKEY
-echo $PKEY
+printf '\033[31m%s\033[m\n' "$PKEY"
 printf '\033[31m%s\033[m\n' "↑このアドレスへBNBtestnetのガスを送る。0,01とかで良い。送ったらenterを叩き次へ進む"
 read _
 
@@ -105,6 +105,6 @@ docker run --restart on-failure -d \
     nulink/nulink nulink ursula run --no-block-until-ready
 
 printf '\033[35m%s\033[m\n' '起動完了。モニター開始 '
-echo $PKEY
-echo "↑dashbordでoperatorに入力するアドレスはこれ"
+printf '\033[31m%s\033[m\n' "$PKEY"
+printf '\033[31m%s\033[m\n' "↑　dashbordでoperatorに入力するアドレスはこれ"
 docker logs -f ursula
