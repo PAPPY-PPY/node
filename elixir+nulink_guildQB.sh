@@ -30,7 +30,7 @@ echo "ENV VALIDATOR_NAME==ELIXIRNODE" >>Dockerfile
 
 printf '\033[32m%s\033[m\n' "その３：dockerを起動"
 docker build . -f Dockerfile -t elixir-validator
-docker run -it --name ev elixir-validator
+docker run -d -it --name ev elixir-validator
 
 #step1
 printf '\033[32m%s\033[m\n' "その１：まずgethをダウンロードしてインストールする"
